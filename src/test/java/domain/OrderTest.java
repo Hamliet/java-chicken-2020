@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -58,7 +57,7 @@ public class OrderTest {
         Menu beverage = new Menu(2, "음료", Category.CHICKEN, 5_000);
         order.addOrder(chicken, 1);
         order.addOrder(beverage, 2);
-        assertThat(order.getTotalPayment(1)).isEqualTo(26000);
+        assertThat(order.getTotalPayment(2)).isEqualTo(24700);
     }
 
     @Test

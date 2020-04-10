@@ -18,7 +18,7 @@ public class OrdersTest {
     void orderUpdate() {
         Orders orders = new Orders(OrderFactory.create());
         Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
-        orders.orderUpdate(1,menu,3);
+        orders.orderUpdate(1, menu, 3);
         assertThat(orders.getOrder(1).isOrderExist()).isTrue();
     }
 }
