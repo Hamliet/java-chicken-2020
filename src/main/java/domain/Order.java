@@ -17,11 +17,20 @@ public class Order {
     public void addOrder(Menu menu, int orderCount) {
         if (orderedMenu.containsKey(menu)) {
             int beforeCount = orderedMenu.get(menu);
+            validate(beforeCount + orderCount);
             orderedMenu.put(menu, beforeCount + orderCount);
             return;
         }
+        validate(orderCount);
         orderedMenu.put(menu, orderCount);
     }
+
+    private void validate(int count) {
+        if (count > 99) {
+            throw new IllegalArgumentException("주문 수량이 99개 이상입니다.");
+        }
+    }
+
 
     public int getTableNumber() {
         return tableNumber;
@@ -73,7 +82,7 @@ public class Order {
         return 0;
     }
 
-    public void clearOrderedMenu(){
+    public void clearOrderedMenu() {
         this.orderedMenu = new HashMap<>();
     }
 }

@@ -32,19 +32,22 @@ public class Application {
 
         final int menuNumber = InputView.inputMenu();
         final int menuCount = InputView.inputMenuCount();
-        Orders.orderUpdate(tableNumber, MenuRepository.getMenu(menuNumber), menuCount);
+        try {
+            Orders.orderUpdate(tableNumber, MenuRepository.getMenu(menuNumber), menuCount);
+        } catch (IllegalArgumentException error) {
+            OutputView.printError(error);
+        }
     }
 
     private static void payment() {
         final List<Table> tables = TableRepository.tables();
-
         OutputView.printTables(tables);
+
         final int tableNumber = InputView.inputTableNumber();
-
         OutputView.printOrder(tableNumber);
-        Order order = Orders.getOrder(tableNumber);
-        final double totalPayment =order.getTotalPayment(InputView.inputHowToPay(tableNumber));
 
+        Order order = Orders.getOrder(tableNumber);
+        final double totalPayment = order.getTotalPayment(InputView.inputHowToPay(tableNumber));
         OutputView.totalAmountToPay(totalPayment);
         order.clearOrderedMenu();
     }

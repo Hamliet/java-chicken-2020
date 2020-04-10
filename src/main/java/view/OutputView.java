@@ -5,6 +5,7 @@ import domain.Order;
 import domain.Orders;
 import domain.Table;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -79,6 +80,10 @@ public class OutputView {
     }
 
     public static void totalAmountToPay(double totalPayment) {
-        System.out.printf("## 최종 결제할 금액 %.0f%s\n\n",totalPayment, "원");
+        System.out.printf("## 최종 결제할 금액 %.0f%s\n\n", totalPayment, "원");
+    }
+
+    public static void printError(Exception e) {
+        System.out.println(e.getMessage());
     }
 }

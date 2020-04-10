@@ -1,5 +1,6 @@
 package domain;
 
+import javax.naming.Name;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +21,7 @@ public class Orders {
         Order order = orders.stream()
                 .filter(o -> o.getTableNumber() == tableNumber)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 Table 번호입니다."));
         order.addOrder(menu, orderCount);
     }
 
@@ -28,6 +29,6 @@ public class Orders {
         return orders.stream()
                 .filter(o -> o.getTableNumber() == tableNumber)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 Table 번호입니다."));
     }
 }

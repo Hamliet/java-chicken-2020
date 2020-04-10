@@ -26,6 +26,6 @@ public class MenuRepository {
         return menus.stream()
                 .filter(o -> o.getNumber() == number)
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(()->new IllegalArgumentException("존재하지 않는 메뉴 번호입니다."));
     }
 }
