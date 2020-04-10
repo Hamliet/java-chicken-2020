@@ -24,14 +24,15 @@ public class Application {
 
     private static void order(Orders orders) {
         final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(orders, tables);
 
+        OutputView.printTables(orders, tables);
         final int tableNumber = InputView.inputTableNumber();
         final List<Menu> menus = MenuRepository.menus();
-        OutputView.printMenus(menus);
 
+        OutputView.printMenus(menus);
         final int menuNumber = InputView.inputMenu();
         final int menuCount = InputView.inputMenuCount();
+
         try {
             orders.orderUpdate(tableNumber, MenuRepository.getMenu(menuNumber), menuCount);
         } catch (IllegalArgumentException error) {
@@ -41,13 +42,14 @@ public class Application {
 
     private static void payment(Orders orders) {
         final List<Table> tables = TableRepository.tables();
+
         OutputView.printTables(orders, tables);
-
         final int tableNumber = InputView.inputTableNumber();
-        OutputView.printOrder(orders, tableNumber);
 
+        OutputView.printOrder(orders, tableNumber);
         Order order = orders.getOrder(tableNumber);
         final double totalPayment = order.getTotalPayment(InputView.inputHowToPay(tableNumber));
+
         OutputView.totalAmountToPay(totalPayment);
         order.clearOrderedMenu();
     }

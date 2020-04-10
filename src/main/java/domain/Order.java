@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class Order {
     private static final int CASH = 2;
+    private static final double DISCOUNT_AMOUNT = 10000;
+    private static final double DISCOUNT_RATE = 0.95;
+    private static final double DISCOUNT_UNIT = 10;
     private Table table;
     private Map<Menu, Integer> orderedMenu;
 
@@ -49,7 +52,7 @@ public class Order {
         double totalPayment = price - discount;
 
         if (inputHowToPay == CASH) {
-            totalPayment *= 0.95;
+            totalPayment *= DISCOUNT_RATE;
         }
         return totalPayment;
     }
@@ -71,7 +74,7 @@ public class Order {
         for (Map.Entry<Menu, Integer> entry : entries) {
             count += getCountIfChicken(entry);
         }
-        return (count / 10) * 10000;
+        return (count / DISCOUNT_UNIT) * DISCOUNT_AMOUNT;
     }
 
     private double getCountIfChicken(Map.Entry<Menu, Integer> entry) {

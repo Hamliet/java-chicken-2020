@@ -18,6 +18,7 @@ public class OutputView {
     public static void printTables(Orders orders, final List<Table> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
+
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
         printBottomLine(orders, tables);
@@ -33,6 +34,7 @@ public class OutputView {
 
     private static String lineSelector(Orders orders, int index, List<Table> tables) {
         Order order = orders.getOrder(tables.get(index).getNumber());
+
         if (order.isOrderExist()) {
             return ORDERED_BOTTOM_LINE;
         }
@@ -61,12 +63,12 @@ public class OutputView {
 
     public static void printOrder(Orders orders, int tableNumber) {
         Order order = orders.getOrder(tableNumber);
+
         System.out.println("## 주문 내역");
         System.out.println("메뉴 수량 금액");
-
         Map<Menu, Integer> orderedMenu = order.getOrderedMenu();
-        printOrderedMenus(orderedMenu);
 
+        printOrderedMenus(orderedMenu);
         System.out.println();
     }
 
