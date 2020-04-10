@@ -22,9 +22,9 @@ public class MenuRepository {
         return Collections.unmodifiableList(menus);
     }
 
-    public static Menu getMenu(int number){
+    public static Menu getMenu(int number) {
         return menus.stream()
-                .filter(o->o.getNumber() ==number)
+                .filter(o -> o.getNumber() == number)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }

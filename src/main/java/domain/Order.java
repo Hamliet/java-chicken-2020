@@ -28,4 +28,8 @@ public class Order {
     public Map<Menu, Integer> getOrderedMenu() {
         return orderedMenu;
     }
+
+    public boolean isOrderExist() {
+        return orderedMenu.size() > 0;
+    }
 }

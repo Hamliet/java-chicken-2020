@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int inputMainOperation(){
+    public static int inputMainOperation() {
         System.out.println("## 메인화면");
         System.out.println("1 - 주문등록");
         System.out.println("2 - 결제하기");
@@ -19,12 +19,12 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static int inputMenu(){
+    public static int inputMenu() {
         System.out.println("## 등록할 메뉴를 선택하세요.");
         return scanner.nextInt();
     }
 
-    public static int inputMenuCount(){
+    public static int inputMenuCount() {
         System.out.println("## 메뉴의 수량을 입력하세요.");
         return scanner.nextInt();
     }
