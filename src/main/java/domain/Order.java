@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class Order {
     private static final int CASH = 2;
-    private static final double DISCOUNT_AMOUNT = 10000;
+    private static final int DISCOUNT_AMOUNT = 10000;
+    private static final int DISCOUNT_UNIT = 10;
     private static final double DISCOUNT_RATE = 0.95;
-    private static final double DISCOUNT_UNIT = 10;
     private Table table;
     private Map<Menu, Integer> orderedMenu;
 
@@ -67,8 +67,8 @@ public class Order {
         return sum;
     }
 
-    private double getDiscount() {
-        double count = 0;
+    private int getDiscount() {
+        int count = 0;
         Set<Map.Entry<Menu, Integer>> entries = orderedMenu.entrySet();
 
         for (Map.Entry<Menu, Integer> entry : entries) {

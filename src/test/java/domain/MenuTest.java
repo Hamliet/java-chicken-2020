@@ -18,4 +18,25 @@ public class MenuTest {
         Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
         assertThat(menu.getNumber()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("getName 테스트")
+    void getName() {
+        Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
+        assertThat(menu.getName()).isEqualTo("후라이드");
+    }
+
+    @Test
+    @DisplayName("getCategory 테스트")
+    void getCategory() {
+        Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
+        assertThat(menu.getCategory()).isEqualTo(Category.CHICKEN);
+    }
+
+    @Test
+    @DisplayName("getPrice 테스트")
+    void getPrice() {
+        Menu menu = new Menu(1, "후라이드", Category.CHICKEN, 16_000);
+        assertThat(menu.getPrice()).isEqualTo(16000);
+    }
 }
