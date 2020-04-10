@@ -37,11 +37,15 @@ public class Application {
 
     private static void payment() {
         final List<Table> tables = TableRepository.tables();
+
         OutputView.printTables(tables);
         final int tableNumber = InputView.inputTableNumber();
-        OutputView.printOrder(tableNumber);
-        double totalPayment = Orders.getOrder(tableNumber).getTotalPayment(InputView.inputHowToPay(tableNumber));
-        OutputView.totalAmountToPay(    );
 
+        OutputView.printOrder(tableNumber);
+        Order order = Orders.getOrder(tableNumber);
+        final double totalPayment =order.getTotalPayment(InputView.inputHowToPay(tableNumber));
+
+        OutputView.totalAmountToPay(totalPayment);
+        order.clearOrderedMenu();
     }
 }

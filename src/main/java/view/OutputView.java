@@ -79,7 +79,6 @@ public class OutputView {
     }
 
     public static void totalAmountToPay(double totalPayment) {
-        System.out.println("## 최종 결제할 금액");
-        System.out.println(totalPayment + "원");
+        System.out.printf("## 최종 결제할 금액 %.0f%s\n\n",totalPayment, "원");
     }
 }

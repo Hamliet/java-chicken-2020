@@ -36,9 +36,9 @@ public class Order {
     }
 
     public double getTotalPayment(int inputHowToPay) {
-        double chickenPayment = getPrice(Category.CHICKEN);
-        double beveragePayment = getPrice(Category.BEVERAGE);
-        double totalPayment = chickenPayment + beveragePayment;
+        double price = getPrice();
+        double discount = getDiscount();
+        double totalPayment = price - discount;
 
         if (inputHowToPay == CASH) {
             totalPayment *= 0.95;
@@ -46,18 +46,34 @@ public class Order {
         return totalPayment;
     }
 
-    private double getPrice(Category category) {
+    private double getPrice() {
         double sum = 0;
-        double count = 0;
         Set<Map.Entry<Menu, Integer>> entries = orderedMenu.entrySet();
 
         for (Map.Entry<Menu, Integer> entry : entries) {
             sum += entry.getKey().getPrice() * entry.getValue();
-            count++;
-        }
-        if (category == Category.CHICKEN && count >= 10) {
-            sum -= (count / 10) * 10000;
         }
         return sum;
+    }
+
+    private double getDiscount() {
+        double count = 0;
+        Set<Map.Entry<Menu, Integer>> entries = orderedMenu.entrySet();
+
+        for (Map.Entry<Menu, Integer> entry : entries) {
+            count += getCountIfChicken(entry);
+        }
+        return (count / 10) * 10000;
+    }
+
+    private double getCountIfChicken(Map.Entry<Menu, Integer> entry) {
+        if (entry.getKey().getCategory() == Category.CHICKEN) {
+            return entry.getValue();
+        }
+        return 0;
+    }
+
+    public void clearOrderedMenu(){
+        this.orderedMenu = new HashMap<>();
     }
 }
