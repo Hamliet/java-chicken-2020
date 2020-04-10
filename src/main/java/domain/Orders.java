@@ -16,18 +16,18 @@ public class Orders {
         orders.add(new Order(8, new HashMap<Menu, Integer>()));
     }
 
-    public static Order getOrder(int tableNumber) {
-        return orders.stream()
-                .filter(o -> o.getTableNumber() == tableNumber)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
-    }
-
     public static void orderUpdate(int tableNumber, Menu menu, int orderCount) {
         Order order = orders.stream()
                 .filter(o -> o.getTableNumber() == tableNumber)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
         order.addOrder(menu, orderCount);
+    }
+
+    public static Order getOrder(int tableNumber) {
+        return orders.stream()
+                .filter(o -> o.getTableNumber() == tableNumber)
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

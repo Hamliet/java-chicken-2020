@@ -39,5 +39,9 @@ public class Application {
         final List<Table> tables = TableRepository.tables();
         OutputView.printTables(tables);
         final int tableNumber = InputView.inputTableNumber();
+        OutputView.printOrder(tableNumber);
+        double totalPayment = Orders.getOrder(tableNumber).getTotalPayment(InputView.inputHowToPay(tableNumber));
+        OutputView.totalAmountToPay(    );
+
     }
 }

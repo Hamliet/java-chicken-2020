@@ -6,6 +6,8 @@ import domain.Orders;
 import domain.Table;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class OutputView {
     private static final String TOP_LINE = "┌ ─ ┐";
@@ -57,5 +59,27 @@ public class OutputView {
         System.out.println();
     }
 
+    public static void printOrder(int tableNumber) {
+        Order order = Orders.getOrder(tableNumber);
+        System.out.println("## 주문 내역");
+        System.out.println("메뉴 수량 금액");
 
+        Map<Menu, Integer> orderedMenu = order.getOrderedMenu();
+        printOrderedMenus(orderedMenu);
+
+        System.out.println();
+    }
+
+    private static void printOrderedMenus(Map<Menu, Integer> orderedMenu) {
+        Set<Map.Entry<Menu, Integer>> entries = orderedMenu.entrySet();
+
+        for (Map.Entry<Menu, Integer> entry : entries) {
+            System.out.printf("%s %s %s\n", entry.getKey().getName(), entry.getValue(), entry.getKey().getPrice() * entry.getValue());
+        }
+    }
+
+    public static void totalAmountToPay(double totalPayment) {
+        System.out.println("## 최종 결제할 금액");
+        System.out.println(totalPayment + "원");
+    }
 }
