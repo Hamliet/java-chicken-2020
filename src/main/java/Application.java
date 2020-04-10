@@ -5,26 +5,26 @@ import view.OutputView;
 import java.util.List;
 
 public class Application {
-
-
     public static void main(String[] args) {
+        Orders orders = new Orders(OrderFactory.create());
+
         while (true) {
             int operation = InputView.inputMainOperation();
             if (Operation.isEnd(operation)) {
                 break;
             }
             if (Operation.isOrder(operation)) {
-                order();
+                order(orders);
             }
             if (Operation.isPayment(operation)) {
-                payment();
+                payment(orders);
             }
         }
     }
 
-    private static void order() {
+    private static void order(Orders orders) {
         final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
+        OutputView.printTables(orders, tables);
 
         final int tableNumber = InputView.inputTableNumber();
         final List<Menu> menus = MenuRepository.menus();
@@ -33,20 +33,20 @@ public class Application {
         final int menuNumber = InputView.inputMenu();
         final int menuCount = InputView.inputMenuCount();
         try {
-            Orders.orderUpdate(tableNumber, MenuRepository.getMenu(menuNumber), menuCount);
+            orders.orderUpdate(tableNumber, MenuRepository.getMenu(menuNumber), menuCount);
         } catch (IllegalArgumentException error) {
             OutputView.printError(error);
         }
     }
 
-    private static void payment() {
+    private static void payment(Orders orders) {
         final List<Table> tables = TableRepository.tables();
-        OutputView.printTables(tables);
+        OutputView.printTables(orders, tables);
 
         final int tableNumber = InputView.inputTableNumber();
-        OutputView.printOrder(tableNumber);
+        OutputView.printOrder(orders, tableNumber);
 
-        Order order = Orders.getOrder(tableNumber);
+        Order order = orders.getOrder(tableNumber);
         final double totalPayment = order.getTotalPayment(InputView.inputHowToPay(tableNumber));
         OutputView.totalAmountToPay(totalPayment);
         order.clearOrderedMenu();

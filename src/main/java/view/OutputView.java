@@ -5,7 +5,6 @@ import domain.Order;
 import domain.Orders;
 import domain.Table;
 
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,24 +15,24 @@ public class OutputView {
     private static final String BOTTOM_LINE = "└ ─ ┘";
     private static final String ORDERED_BOTTOM_LINE = "└ W ┘";
 
-    public static void printTables(final List<Table> tables) {
+    public static void printTables(Orders orders, final List<Table> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
         printLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printBottomLine(tables);
+        printBottomLine(orders, tables);
     }
 
-    private static void printBottomLine(List<Table> tables) {
+    private static void printBottomLine(Orders orders, List<Table> tables) {
         for (int index = 0; index < tables.size(); index++) {
-            String bottomLine = lineSelector(index, tables);
+            String bottomLine = lineSelector(orders, index, tables);
             System.out.print(bottomLine);
         }
         System.out.println();
     }
 
-    private static String lineSelector(int index, List<Table> tables) {
-        Order order = Orders.getOrder(tables.get(index).getNumber());
+    private static String lineSelector(Orders orders, int index, List<Table> tables) {
+        Order order = orders.getOrder(tables.get(index).getNumber());
         if (order.isOrderExist()) {
             return ORDERED_BOTTOM_LINE;
         }
@@ -60,8 +59,8 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printOrder(int tableNumber) {
-        Order order = Orders.getOrder(tableNumber);
+    public static void printOrder(Orders orders, int tableNumber) {
+        Order order = orders.getOrder(tableNumber);
         System.out.println("## 주문 내역");
         System.out.println("메뉴 수량 금액");
 

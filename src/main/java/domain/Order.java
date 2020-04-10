@@ -6,11 +6,11 @@ import java.util.Set;
 
 public class Order {
     private static final int CASH = 2;
-    private int tableNumber;
+    private Table table;
     private Map<Menu, Integer> orderedMenu;
 
-    public Order(int tableNumber, HashMap<Menu, Integer> orderedMenu) {
-        this.tableNumber = tableNumber;
+    public Order(Table table, HashMap<Menu, Integer> orderedMenu) {
+        this.table = table;
         this.orderedMenu = orderedMenu;
     }
 
@@ -27,13 +27,12 @@ public class Order {
 
     private void validate(int count) {
         if (count > 99) {
-            throw new IllegalArgumentException("주문 수량이 99개 이상입니다.");
+            throw new IllegalArgumentException("!! 실패 : 주문 수량이 99개 이상입니다.");
         }
     }
 
-
     public int getTableNumber() {
-        return tableNumber;
+        return table.getNumber();
     }
 
     public Map<Menu, Integer> getOrderedMenu() {
